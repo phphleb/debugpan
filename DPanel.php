@@ -17,7 +17,7 @@ class DPanel
     public static function add($info)
     {
 
-        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.0.0";
+        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.0.1";
 
         $hl_block_name = "__hl_debug_panel";
 
