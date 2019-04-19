@@ -148,7 +148,7 @@ class DPanel
             "<a href='https://phphleb.ru/'><span style='color:#9d9d9d;'>phphleb.ru</span></a></span>";
 
         foreach($GLOBALS["HLEB_PROJECT_UPDATES"] as $key => $value) {
-            if(stripos($value, "phphleb/") === 0) {
+            if(stripos($key, "phphleb/") === 0) {
                 $links .= "<div style='display:inline-block; margin: 15px 15px 0 0; white-space: nowrap; color:grey;'>" .
                     "<a href='https://github.com/$key/'><span style='color:#9d9d9d;'>$key</span></a> $value </div>";
             }
