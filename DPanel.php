@@ -30,13 +30,13 @@ class DPanel
         foreach ($timing as $key => $value) {
 
             $hl_data_time .= "<div style='padding: 3px'>" . $key . ": " . $value . ($hl_preview > 0 ?
-            " (+" . round($value - $hl_preview, 4) . ")" : "") . "</div>";
+                    " (+" . round($value - $hl_preview, 4) . ")" : "") . "</div>";
 
             $hl_preview = $value;
         }
 
         $hl_this_route = self::this_block($info["block"]);
-        
+
         $hl_pr_updates = self::my_links();
 
         $hl_block_data = $info["block"];
@@ -122,35 +122,36 @@ class DPanel
 
     private static function my_debug()
     {
-      $info = MyDebug::all();
-      $result = [];
-      foreach($info as $k=>$inf) {
-          $result[$k] = ['name'=>$k, 'cont'=>'', 'num'=>0];
-          if (is_array($inf)) {
-              $result[$k]['num'] = count($inf);
-              foreach ($inf as $key=>$value) {
-                  $result[$k]['cont'] .=  "<div style='padding: 3px;'><b>" . $key . "</b>: ";
-                  $result[$k]['cont'] .= (is_array($value) ? htmlspecialchars(stripcslashes(json_encode($value))) : $value);
-                  $result[$k]['cont'] .= "</div>";
-              }
-          } else {
-              $to_str = strval($inf);
-              $result[$k]['cont'] .= $to_str;
-              $result[$k]['num'] = "len " . strlen($to_str);
-          }
-      }
-      return $result;
+        $info = MyDebug::all();
+        $result = [];
+        foreach($info as $k=>$inf) {
+            $result[$k] = ['name'=>$k, 'cont'=>'', 'num'=>0];
+            if (is_array($inf)) {
+                $result[$k]['num'] = count($inf);
+                foreach ($inf as $key=>$value) {
+                    $result[$k]['cont'] .=  "<div style='padding: 3px;'><b>" . $key . "</b>: ";
+                    $result[$k]['cont'] .= (is_array($value) ? htmlspecialchars(stripcslashes(json_encode($value))) : $value);
+                    $result[$k]['cont'] .= "</div>";
+                }
+            } else {
+                $to_str = strval($inf);
+                $result[$k]['cont'] .= $to_str;
+                $result[$k]['num'] = "len " . strlen($to_str);
+            }
+        }
+        return $result;
     }
 
     private static function my_links()
     {
-        $links = "<a href='https://phphleb.ru/'><span style='display:inline-block; margin: 15px 15px 0 0;color:#9d9d9d;'>phphleb.ru</span></a>";
+        $links = "<span style='display:inline-block; margin: 15px 15px 0 0;color:#9d9d9d;'>" .
+            "<a href='https://phphleb.ru/'><span style='color:#9d9d9d;'>phphleb.ru</span></a></span>";
 
         foreach($GLOBALS["HLEB_PROJECT_UPDATES"] as $key => $value) {
-
-            $links .= "<div style='display:inline-block; margin: 15px 15px 0 0; white-space: nowrap; color:grey;'><a href='https://github.com/$key/'>" .
-                "<span style='color:#9d9d9d;'>$key</span></a> $value </div>";
-
+            if(stripos($value, "phphleb/") == 1) {
+                $links .= "<div style='display:inline-block; margin: 15px 15px 0 0; white-space: nowrap; color:grey;'>" .
+                    "<a href='https://github.com/$key/'><span style='color:#9d9d9d;'>$key</span></a> $value </div>";
+            }
         }
 
         return $links;
@@ -163,3 +164,4 @@ class DPanel
     }
 
 }
+
