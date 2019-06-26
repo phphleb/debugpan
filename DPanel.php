@@ -9,6 +9,7 @@ use Hleb\Main\Info;
 use Hleb\Main\MyDebug;
 use Hleb\Main\MyWork;
 use Hleb\Main\WorkDebug;
+use Hleb\Main\DataDebug;
 
 class DPanel
 {
@@ -20,8 +21,13 @@ class DPanel
 
     public static function add($info)
     {
+        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.0.3";
 
-        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.0.2";
+        if(isset($GLOBALS["HLEB_MAIN_DEBUG_NANOROUTER"])){
+            $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/nanorouter"] = "1";
+            if(count($GLOBALS["HLEB_MAIN_DEBUG_NANOROUTER"]))
+                MyDebug::add("NANOROUTER", $GLOBALS["HLEB_MAIN_DEBUG_NANOROUTER"] );
+        }
 
         $hl_block_name = "__hl_debug_panel";
 
@@ -49,7 +55,7 @@ class DPanel
 
     }
 
-    protected static function this_block($block)
+    protected static function this_block(array $block)
     {
         $name = $where = $actions = $path = "";
 
@@ -65,7 +71,7 @@ class DPanel
             }
             foreach ($bl as $key => $value) {
 
-                $actions .= "<div style='padding-left: 8px'>" . $key . ": ";
+                $actions .= "<div style='padding-left: 8px; white-space: nowrap;'>" . $key . ": ";
                 $actions .= htmlspecialchars(stripcslashes(json_encode($value))) . "</div>";
 
             }
@@ -104,11 +110,11 @@ class DPanel
         ];
     }
 
-    private static function create_path($path)
+    private static function create_path($p)
     {
-        $path = "/" . trim(preg_replace('|([/]+)|s', "/", $path), "/") . "/";
+        $path = "/" . trim(preg_replace('|([/]+)|s', "/", $p), "/") . "/";
 
-        $path = $path == "//" ? "/" : $path;
+        $path = ($path == "//") ? "/" : $path;
 
         $path = preg_replace('|\{(.*?)\}|s', "<span style='color: #e3d027'>$1</span>", $path);
 
@@ -121,7 +127,7 @@ class DPanel
         $rows = "";
         if(class_exists("\Hleb\Main\DataDebug")){
 
-           $data = \Hleb\Main\DataDebug::get();
+           $data = DataDebug::get();
            $all_time = 0;
            foreach($data as $key => $value){
                $ms = round($value[1], 4);
