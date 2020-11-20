@@ -40,12 +40,17 @@ class DPanel
         }
         self::$initPanel = true;
 
-        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.2";
+        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.3";
 
         if (isset($GLOBALS["HLEB_MAIN_DEBUG_RADJAX"])) {
             $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/radjax"] = "dev";
             if (count($GLOBALS["HLEB_MAIN_DEBUG_RADJAX"]))
                 MyDebug::add("RADJAX routes", self::createRajaxDebugInfo($GLOBALS["HLEB_MAIN_DEBUG_RADJAX"]));
+        }
+
+        $blockingParameter = defined('HLEB_BLOCKED_DEBUG_FROM_GET_PARAMETER') ? HLEB_BLOCKED_DEBUG_FROM_GET_PARAMETER : "_debug";
+        if(isset($_REQUEST[$blockingParameter]) && $_REQUEST[$blockingParameter] === 'off') {
+            return;
         }
 
         $debugBlockName = "__hl_debug_panel";
@@ -63,7 +68,6 @@ class DPanel
         $debugActualRoute = self::actualBlock($info["block"]);
         $debugUpdates = self::myLinks();
         require_once "panels/block.php";
-
     }
 
     // Gather information for output
