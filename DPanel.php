@@ -39,7 +39,7 @@ class DPanel
         }
         self::$initPanel = true;
 
-        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.4";
+        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.5";
 
         if (isset($GLOBALS["HLEB_MAIN_DEBUG_RADJAX"])) {
             $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/radjax"] = "dev";
