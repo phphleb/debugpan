@@ -13,7 +13,6 @@ namespace Phphleb\Debugpan;
 
 use Hleb\Main\Info;
 use Hleb\Main\MyDebug;
-use Hleb\Main\MyWork;
 use Hleb\Main\WorkDebug;
 use Hleb\Main\DataDebug;
 
