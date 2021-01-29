@@ -15,11 +15,10 @@ use Hleb\Main\Info;
 use Hleb\Main\MyDebug;
 use Hleb\Main\WorkDebug;
 use Hleb\Main\DataDebug;
+use Hleb\Main\Insert\BaseSingleton;
 
-class DPanel
+class DPanel extends BaseSingleton
 {
-    use \DeterminantStaticUncreated;
-
     private static $queries = false;
 
     private static $initPanel = false;
