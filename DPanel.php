@@ -36,7 +36,7 @@ class DPanel extends BaseSingleton
 
         $debugActualMemoryMaxScript = round(memory_get_peak_usage (false) / 1024 / 1024, 2);
 
-        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.7";
+        $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/debugpan"] = "1.8";
 
         if (isset($GLOBALS["HLEB_MAIN_DEBUG_RADJAX"])) {
             $GLOBALS["HLEB_PROJECT_UPDATES"]["phphleb/radjax"] = "dev";
