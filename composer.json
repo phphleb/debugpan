@@ -1,8 +1,8 @@
 {
     "name": "phphleb/debugpan",
-    "description": "Debug panel for Micro-Framework HLEB",
+    "description": "Debug Panel for PHP Framework HLEB2",
     "type": "library",
-    "homepage": "https://phphleb.ru",
+    "homepage": "https://hleb2framework.ru",
     "license": "MIT",
     "authors": [
         {
@@ -11,8 +11,14 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "phphleb/framework": ">=1.5.52"
+        "php": ">=8.2",
+        "phphleb/framework": ">=2.0.0",
+        "phphleb/nicejson": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phphleb\\Debugpan\\": "/"
+        }
     },
     "minimum-stability": "dev"
 
