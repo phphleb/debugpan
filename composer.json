@@ -13,7 +13,7 @@
     "require": {
         "php": ">=8.2",
         "phphleb/framework": ">=2.0.0",
-        "phphleb/nicejson": "dev-main"
+        "phphleb/nicejson": "*"
     },
     "autoload": {
         "psr-4": {
